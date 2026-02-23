@@ -1,0 +1,9 @@
+config\ConfigReader.class
+pages\PomManager.class
+steps\stepdefinition.class
+pages\SauceDemoLogin.class
+pages\ProductPage.class
+support\Hooks.class
+pages\CheckoutPage.class
+Runner\TestRunner.class
+support\TestDataReader.class
