@@ -19,7 +19,7 @@ public class DBUtils {
 	}
 
 	public void close() throws SQLException {
-		if (conn != null)
+		if (conn != null )
 			conn.close();
 	}
 
