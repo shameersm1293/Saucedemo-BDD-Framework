@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ENGINEERING NOTES:
 
 1. Why did you choose this framework structure?
@@ -52,3 +53,6 @@ This framework structure was chosen for clarity, maintainability, and scalabilit
 - Locator strategies improve stability.  
 - The design supports scaling to 50+ scenarios and seamless CI/CD integration.  
 - With more time, cloud execution and advanced reporting would further strengthen the framework.
+=======
+# Saucedemo-BDD-Framework
+>>>>>>> ba305b43eb455ec0ac2b91d6733db3d309486931
