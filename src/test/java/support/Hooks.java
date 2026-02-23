@@ -19,56 +19,33 @@ public class Hooks {
 
 	@Before
 	public void setup(Scenario scenario) {
-		ExtentTestManager.startTest(scenario.getName());
 
 		String browser = ConfigReader.get("BROWSER").toLowerCase();
-		boolean headless = Boolean.parseBoolean(ConfigReader.get("HEADLESS"));
+//		boolean headless = Boolean.parseBoolean(ConfigReader.get("HEADLESS"));
 
 		switch (browser) {
 		case "chrome":
-			ChromeOptions chromeOptions = new ChromeOptions();
-			if (headless)
-				chromeOptions.addArguments("--headless=new");
-			chromeOptions.addArguments("--disable-save-password-bubble");
-			chromeOptions.addArguments("--disable-password-manager");
-			driver = new ChromeDriver(chromeOptions);
+			driver = new ChromeDriver();
 			break;
-
 		case "edge":
-			EdgeOptions edgeOptions = new EdgeOptions();
-			if (headless)
-				edgeOptions.addArguments("--headless=new");
-			driver = new EdgeDriver(edgeOptions);
+			driver = new EdgeDriver();
 			break;
-
 		case "firefox":
-			FirefoxOptions firefoxOptions = new FirefoxOptions();
-			if (headless)
-				firefoxOptions.addArguments("--headless");
-			driver = new FirefoxDriver(firefoxOptions);
+			driver = new FirefoxDriver();
 			break;
-
 		default:
 			throw new RuntimeException("Unsupported browser: " + browser);
 		}
-
-//		ChromeOptions options = new ChromeOptions();
-//		
-//		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 	}
 
 	@After
 	public void teardown(Scenario scenario) {
-		if (scenario.isFailed()) { 
-			String screenshotPath = ScreenshotUtils.captureScreenshot(driver, scenario.getName());
-			ExtentTestManager.getTest().fail("Scenario failed: " + scenario.getName()).addScreenCaptureFromPath(screenshotPath); // Optionally attach screenshot here 
-			} 
-		else { ExtentTestManager.getTest().pass("Scenario passed: " + scenario.getName()); 
-		} ExtentTestManager.endTest();
+		
+		if (scenario.isFailed()) { ScreenshotUtils.captureScreenshot(driver, scenario.getName()); }
 		if (Hooks.driver != null) {
 			Hooks.driver.quit();
 		}
 	}
 
-	}
+}
